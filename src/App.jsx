@@ -5,8 +5,8 @@ import "./App.css";
 
 function App() {
   const [thoughts, setThoughts] = useState([]);
+  const [uniqueLikes, setUniqueLikes] = useState(new Set()); // New state to track unique likes
   const [loading, setLoading] = useState(true);
-  const [totalUserLikes, setTotalUserLikes] = useState(0);
   const apiUrl = "https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts";
 
   useEffect(() => {
@@ -25,14 +25,20 @@ function App() {
   };
 
   const onLike = (thoughtId) => {
-    // Update the likes for the thought in the thoughts state
-    setThoughts((prevThoughts) =>
-      prevThoughts.map((thought) =>
+    setThoughts((prevThoughts) => {
+      // Determine if the like is unique and update the uniqueLikes state
+      const isUniqueLike = !uniqueLikes.has(thoughtId);
+      if (isUniqueLike) {
+        setUniqueLikes(new Set(uniqueLikes).add(thoughtId));
+      }
+
+      // Map through thoughts and update the one that was liked
+      return prevThoughts.map((thought) =>
         thought._id === thoughtId
-          ? { ...thought, hearts: thought.hearts + 1 }
+          ? { ...thought, hearts: thought.hearts + (isUniqueLike ? 1 : 0) }
           : thought
-      )
-    );
+      );
+    });
   };
 
   return (
@@ -41,20 +47,14 @@ function App() {
       <div className="ThoughtForm">
         <ThoughtForm onThoughtSubmit={onThoughtSubmit} />
       </div>
-      <p className="TotalLikes">Total ❤️ you have given so far: {totalUserLikes}</p>
+      <h2 className="unique-likes-counter"> ❤️ = {uniqueLikes.size}</h2>
       {loading ? (
         <div className="spinner"></div>
       ) : (
-        <ThoughtList
-          thoughts={thoughts}
-          onLike={onLike}
-          totalUserLikes={totalUserLikes}
-          setTotalUserLikes={setTotalUserLikes}
-        />        
+        <ThoughtList thoughts={thoughts} onLike={onLike} />
       )}
     </div>
   );
-  
 }
 
 export default App;

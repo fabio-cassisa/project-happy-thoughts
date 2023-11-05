@@ -24,10 +24,6 @@ h1 {
   font-weight: 700;
 }
 
-.TotalLikes {
-  text-align: center;
-}
-
 /* ThoughtForm styles */
 .ThoughtForm {
   display: flex;
@@ -38,6 +34,18 @@ h1 {
   background-color: #ebebeb;
   margin-bottom: 40px;
   box-shadow: 8px 8px 0px rgba(0, 0, 0, 1);
+}
+
+.ThoughtSubmitContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* To align them vertically in the center */
+  margin-bottom: 10px; /* You can adjust this as needed */
+}
+
+.unique-likes-counter {
+  float: right; /* Floats the element to the right */
+  margin: 0; /* Ensures there are no margins */
 }
 
 /* Style for the character count */
@@ -55,7 +63,6 @@ h1 {
 .textarea-container {
   position: relative;
 }
-
 
 .ThoughtForm textarea {
   width: calc(100% - 20px); /* Full width with margin accounted for */

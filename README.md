@@ -5,3 +5,5 @@ We've been tapping into useEffect and useState for handling external API calls, 
 On the UI front, we took things up a notch, introducing some slick styling and animations. We even added a spinning loader to keep the interface lively while awaiting data from the API.
 
 ### View it live
+
+https://happy-thoughts-carl-fabio.netlify.app/
