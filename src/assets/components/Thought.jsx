@@ -37,7 +37,7 @@ const timeSince = (date) => {
   return `${yearsPast}y ago`;
 };
 
-export const Thought = ({ thought, onLike }) => {
+export const Thought = ({ thought, onLike, totalUserLikes, setTotalUserLikes }) => {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -52,11 +52,16 @@ export const Thought = ({ thought, onLike }) => {
     return () => clearTimeout(timeoutId);
   }, []);
 
+  const handleLikeClick = () => {
+    onLike(thought._id);
+    setTotalUserLikes(totalUserLikes + 1);
+  };
+
   return (
     <div ref={ref} className="ThoughtItem">
       <p>{thought.message}</p>
       <div className="ThoughtActions">
-        <HeartButton thought={thought} onLike={onLike} />
+        <HeartButton thought={thought} onLike={handleLikeClick} />
         <span className="timestamp">{timeSince(thought.createdAt)}</span>
       </div>
     </div>

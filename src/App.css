@@ -19,9 +19,13 @@ body {
 h1 {
   font-family: "Happy Monkey", Arial, sans-serif;
   text-align: center;
-  color: #962f2f;
+  color: #ffa4b5;
   margin-bottom: 40px;
   font-weight: 700;
+}
+
+.TotalLikes {
+  text-align: center;
 }
 
 /* ThoughtForm styles */

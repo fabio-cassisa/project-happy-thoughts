@@ -6,6 +6,7 @@ import "./App.css";
 function App() {
   const [thoughts, setThoughts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [totalUserLikes, setTotalUserLikes] = useState(0);
   const apiUrl = "https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts";
 
   useEffect(() => {
@@ -40,13 +41,20 @@ function App() {
       <div className="ThoughtForm">
         <ThoughtForm onThoughtSubmit={onThoughtSubmit} />
       </div>
+      <p className="TotalLikes">Total ❤️ you have given so far: {totalUserLikes}</p>
       {loading ? (
         <div className="spinner"></div>
       ) : (
-        <ThoughtList thoughts={thoughts} onLike={onLike} />
+        <ThoughtList
+          thoughts={thoughts}
+          onLike={onLike}
+          totalUserLikes={totalUserLikes}
+          setTotalUserLikes={setTotalUserLikes}
+        />        
       )}
     </div>
   );
+  
 }
 
 export default App;

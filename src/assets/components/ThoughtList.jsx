@@ -1,11 +1,16 @@
 import { Thought } from "./Thought";
 
-export const ThoughtList = ({ thoughts, onLike }) => {
+export const ThoughtList = ({ thoughts, onLike, totalUserLikes, setTotalUserLikes }) => {
   return (
-    <div>
-      <h2>Recent Thoughts</h2>
+    <div className="ThoughtList">
       {thoughts.map((thought) => (
-        <Thought key={thought._id} thought={thought} onLike={onLike} />
+        <Thought
+          key={thought._id}
+          thought={thought}
+          onLike={onLike}
+          totalUserLikes={totalUserLikes}
+          setTotalUserLikes={setTotalUserLikes}
+        />
       ))}
     </div>
   );
