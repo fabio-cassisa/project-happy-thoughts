@@ -103,11 +103,13 @@ h1 {
   background-color: #fff;
   box-shadow: 8px 8px 0px rgba(0, 0, 0, 1);
   margin-bottom: 30px;
+  word-wrap: break-word;
 }
 
 .ThoughtItem .message {
   flex: 1;
   padding-right: 10px;
+  
 }
 
 .ThoughtItem .likes {
